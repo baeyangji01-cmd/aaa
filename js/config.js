@@ -11,8 +11,8 @@ window.ANBU_CONFIG = {
   proxyUrl: '',  // 예: https://<project>.supabase.co/functions/v1/applyhome
 
   /* Supabase (군인가족 추천 카페 저장). anon 키는 공개용이라 브라우저에 넣어도 돼요 (RLS로 보호). */
-  supabaseUrl: '',      // 예: https://<project>.supabase.co
-  supabaseAnonKey: '',  // anon 또는 sb_publishable_… 키만 (service_role / sb_secret_ 금지)
+  supabaseUrl: 'https://hskyqpxkwyltkadrnkmf.supabase.co',
+  supabaseAnonKey: 'sb_publishable_o3UOQhlem5slnvbQ9VQfhA_sjE34OFs',  // anon 또는 sb_publishable_… 키만 (service_role / sb_secret_ 금지)
 
   /* 군 주거 지원 기준값 — 제도 수치가 바뀌면 여기만 고치면 돼요. (부대 인사담당 · 국군복지단 공지로 확인) */
   housing: {
