@@ -16,24 +16,24 @@
 
 | 단계 | 상태 |
 |---|---|
-| 웹사이트 기능 개발 | ✅ 완료 (로컬에서 `index.html` 더블클릭으로 동작) |
-| Supabase 기능 코드 (추천 카페) | ✅ 코드 완료 · ⬜ 실제 프로젝트 연결 안 됨 |
-| GitHub 저장소 | ⬜ 미생성 |
-| Vercel 배포 | ⬜ 미배포 |
+| 웹사이트 기능 개발 | ✅ 완료 |
+| Supabase 기능 코드 (추천 카페) | ✅ 프로젝트 `hskyqpxkwyltkadrnkmf` 연결 · ⬜ `cafe_tips` 테이블 없음 (schema.sql 미실행 → 화면에서 숨김) |
+| GitHub 저장소 | ✅ https://github.com/baeyangji01-cmd/aaa (main) |
+| Vercel 배포 | ✅ https://anbu-site-phi.vercel.app (프로젝트 `yj-9997/anbu-site`, main에 push하면 자동 배포) |
 | AI 안부 (등기부 해석 · 특약 점검 · 상담) | ✅ 코드 완료 · Vercel에 `ANTHROPIC_API_KEY` 등록 필요 (없으면 규칙 기반 기본 분석) |
 | 청약홈 실데이터 API | ⬜ 미연결 (예시 데이터로 동작) |
 
 시연용 미리보기(Claude 아티팩트): https://claude.ai/artifact/3sFx91nhaY41wxXBcatVLM (지도 타일 없음, Supabase 미동작)
 
-## 다음 할 일 (배포)
+## 다음 할 일
 
-1. **Supabase**
-   - 새 프로젝트 `anbu` (Region: Northeast Asia/Seoul)
-   - SQL Editor에서 `supabase/schema.sql` 실행 → `cafe_tips` 테이블 + RLS(읽기 · 등록 공개)
-   - Project URL, anon(또는 `sb_publishable_…`) 키 → `js/config.js`의 `supabaseUrl`, `supabaseAnonKey`
-2. **GitHub**: `git init` → 커밋 → `anbu` 공개 저장소 생성 후 push (`gh repo create anbu --public --source . --push` 가능)
-3. **Vercel**: GitHub 저장소 Import → Framework Preset `Other` → Deploy (CLI: `npx vercel --prod`)
-4. **확인**: 배포 URL에서 가족 · 교육 → 지역 선택 → 추천 카페 등록 → 목록에 표시되는지
+1. **Claude API 키**: Vercel `anbu-site` → Settings → Environment Variables에 `ANTHROPIC_API_KEY` 등록 → 재배포. 등록 뒤 배포 사이트에서 등기부 해석 · 특약 점검 · 상담을 실제로 시험할 것 (**진짜 AI 응답은 아직 한 번도 확인 못 함**, 가짜 서버로만 시험).
+2. **Supabase**: SQL Editor에서 `supabase/schema.sql` 실행 (주소창에 `hskyqpxkwyltkadrnkmf` 확인) → 필요하면 `notify pgrst, 'reload schema';`
+3. **발표 전 확인**: 아래 '미확인' 수치의 출처.
+4. 해커톤 평가: 동료 70 · 심사위원 20 · AI 10. 발표 3~5분.
+
+인수인계 문서(claude.ai, 개인 계정): https://claude.ai/artifact/VJXs4BTmtaNFfUnF3f6C2H
+썸네일: 저장소의 `og.png` (1280×800)
 
 ## 폴더 구조
 
@@ -58,11 +58,11 @@ anbu-site/
 └─ README.md
 ```
 
-외부 라이브러리(CDN): Leaflet 1.9.4(unpkg), topojson 3.0.2(cdnjs), Google Fonts(IBM Plex Sans KR / Mono). 지도 타일: CARTO dark.
+외부 라이브러리(CDN): Leaflet 1.9.4(unpkg), topojson 3.0.2(cdnjs), Google Fonts(Black Han Sans / IBM Plex Sans KR / Mono). 지도 타일: Esri 다크 그레이 (키 불필요, 주소는 `js/config.js`의 `tiles`. CARTO는 API 키가 필요해져서 교체).
 
 ## 페이지 섹션 (index.html 순서)
 
-1. **히어로**: 슬로건, 레이더 캔버스, 브리핑 패널, 알림 티커
+1. **첫 화면**: 노을 스카이라인 배경, 큰 제목 "안!부!", 집 캐릭터, 할 일 카드 5개 + **30초 체험**(예시 인물 4명 → 내 안부 리포트)
 2. **#mil 군인 청약 내비**: 프로필(기준 위치, 반경, 신분, 복무연수, 무주택 기간, 통장, 가족) → 지도 · 반경 내 예시 분양 목록 · 지역 파일
    - 자격 8종: 일반 1순위, 군인 기관추천(10년+), 수도권 기타지역 자격(10년+), 해당지역 간주(25년+, 국방부 추천), 제대군인, 신혼부부, 생애최초, 다자녀
    - 가점: 무주택 `min(32, 2+2·년)` + 부양가족 `min(35, 5+5·명)` + 통장(6개월 미만 1, 1년 미만 2, 이후 `2+년`, 최대 17)
@@ -105,6 +105,7 @@ localStorage 키: `anbu-profile`, `anbu-checks`, `anbu-support`, `anbu-comm`, `a
 - 군인 자녀 농어촌 특례(근무지 기준) — 공식 근거 못 찾음, 일반 요건으로만 안내
 - 청약홈 분양정보 API 엔드포인트 · 필드명(`ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDetail`) — 실제 키로 테스트 필요
 - 지원기관 전화번호(HUG 1566-9009, 전세피해지원센터 1533-8119, 법률구조공단 132)
+- 20·30대 전세보증금 사고 피해 비율 69% (2022년, HUG 보증사고 기준 보도) — 사이트 "왜 안부인가"에 표시, 출처 미확인
 
 ## 다음 개선 아이디어
 
