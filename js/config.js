@@ -14,6 +14,14 @@ window.ANBU_CONFIG = {
   supabaseUrl: 'https://hskyqpxkwyltkadrnkmf.supabase.co',
   supabaseAnonKey: 'sb_publishable_o3UOQhlem5slnvbQ9VQfhA_sjE34OFs',  // anon 또는 sb_publishable_… 키만 (service_role / sb_secret_ 금지)
 
+  /* 지도 배경 타일 (키 없이 사용 가능한 Esri 다크 그레이). CARTO는 2026년부터 API 키가 필요해요. */
+  tiles: {
+    base: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
+    labels: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',
+    maxZoom: 16,
+    attribution: 'Tiles &copy; <a href="https://www.esri.com">Esri</a> — Esri, HERE, Garmin, &copy; OpenStreetMap contributors'
+  },
+
   /* 군 주거 지원 기준값 — 제도 수치가 바뀌면 여기만 고치면 돼요. (부대 인사담당 · 국군복지단 공지로 확인) */
   housing: {
     grades: {

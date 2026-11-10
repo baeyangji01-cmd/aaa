@@ -20,8 +20,9 @@ fc.features.forEach(f=>{const p=f.properties,pc=p.code.slice(0,2);p.pc=pc;p.prov
 /* ---------- 지도 ---------- */
 const map=L.map('lmap',{zoomControl:true,attributionControl:true,minZoom:6,maxZoom:16}).setView([36.9,127.6],7);
 map.zoomControl.setPosition('topright');map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:19,
-  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a> · 경계: 통계청(2013)'}).addTo(map);
+{const T=(window.ANBU_CONFIG||{}).tiles;
+  L.tileLayer(T.base,{maxNativeZoom:T.maxZoom,maxZoom:18,attribution:T.attribution+' · 경계: 통계청(2013)'}).addTo(map);
+  if(T.labels)L.tileLayer(T.labels,{maxNativeZoom:T.maxZoom,maxZoom:18,pane:'overlayPane',opacity:.7}).addTo(map);}
 let showBorder=true,showSites=true,selCity=null;
 function regionStyle(f){const p=f.properties;const sel=selCity&&selCity.key===p.pc+'|'+p.city;
   if(sel)return{color:'#3FD0E0',weight:2,fillColor:'#3FD0E0',fillOpacity:.18};

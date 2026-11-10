@@ -54,7 +54,9 @@ function save(){const s={mode,fee:$('#r-fee').checked,gradeManual};['r-base','r-
 /* ---------- 지도 ---------- */
 const map=L.map('rmap',{minZoom:6,maxZoom:17,scrollWheelZoom:true}).setView([37.48,127.14],12);
 map.zoomControl.setPosition('topright');map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'}).addTo(map);
+{const T=(window.ANBU_CONFIG||{}).tiles;
+  L.tileLayer(T.base,{maxNativeZoom:T.maxZoom,maxZoom:18,attribution:T.attribution}).addTo(map);
+  if(T.labels)L.tileLayer(T.labels,{maxNativeZoom:T.maxZoom,maxZoom:18,pane:'overlayPane',opacity:.7}).addTo(map);}
 if(window.KOREA_TOPO&&window.topojson){const k=Object.keys(KOREA_TOPO.objects)[0];
   L.geoJSON(topojson.feature(KOREA_TOPO,KOREA_TOPO.objects[k]),{style:{color:'#3A5060',weight:.6,fillColor:'#0A0E13',fillOpacity:.05},interactive:false}).addTo(map)}
 const lay=L.layerGroup().addTo(map);let baseM=null,circ=null,markers={};
