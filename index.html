@@ -5,9 +5,15 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>안부 — 안전한 부동산</title>
 <meta name="description" content="당신의 안전한 부동산을 위해 당신의 안!부!를 묻습니다. 군인 맞춤 청약 내비, 지역 탐색, 전월세 안전 체크리스트.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="안!부! — 군인을 위한 안전한 부동산">
+<meta property="og:description" content="내 복무 조건으로 찾는 청약과 집, AI가 읽어 주는 등기부등본 · 특약.">
+<meta property="og:image" content="https://anbu-site-phi.vercel.app/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -31,13 +37,57 @@
   <div class="hero wrap">
     <div class="hero-grid">
       <div class="pnl corner stage">
-        <canvas id="radar" aria-hidden="true"></canvas>
+        <svg class="st-stars" viewBox="0 0 800 300" preserveAspectRatio="xMidYMin slice" aria-hidden="true"><g fill="#fff">
+          <circle cx="60" cy="40" r="1.6" opacity=".7"/><circle cx="210" cy="24" r="2" opacity=".8"/><circle cx="330" cy="70" r="1.4" opacity=".6"/><circle cx="470" cy="30" r="1.9" opacity=".8"/>
+          <circle cx="590" cy="64" r="1.6" opacity=".7"/><circle cx="700" cy="28" r="2.1" opacity=".8"/><circle cx="760" cy="96" r="1.3" opacity=".5"/><circle cx="130" cy="110" r="1.3" opacity=".5"/></g></svg>
+        <div class="st-sun"></div>
+        <svg class="st-sky" viewBox="0 0 1280 300" preserveAspectRatio="none" aria-hidden="true">
+          <g fill="#0E2E4E" opacity=".75">
+            <rect x="0" y="150" width="90" height="150"/><rect x="100" y="110" width="70" height="190"/><rect x="180" y="170" width="110" height="130"/><rect x="300" y="130" width="60" height="170"/>
+            <rect x="370" y="180" width="120" height="120"/><rect x="500" y="140" width="80" height="160"/><rect x="590" y="190" width="130" height="110"/><rect x="730" y="150" width="70" height="150"/>
+            <rect x="810" y="120" width="90" height="180"/><rect x="910" y="175" width="120" height="125"/><rect x="1040" y="135" width="70" height="165"/><rect x="1120" y="165" width="160" height="135"/>
+          </g>
+          <g fill="#081A30">
+            <rect x="-10" y="215" width="140" height="85"/><rect x="140" y="190" width="100" height="110"/><rect x="250" y="230" width="150" height="70"/><rect x="410" y="205" width="90" height="95"/>
+            <rect x="510" y="240" width="170" height="60"/><rect x="690" y="210" width="100" height="90"/><rect x="800" y="235" width="150" height="65"/><rect x="960" y="200" width="100" height="100"/><rect x="1070" y="228" width="220" height="72"/>
+          </g>
+          <g fill="#FFD77A">
+            <rect x="156" y="206" width="14" height="12"/><rect x="204" y="230" width="14" height="12"/><rect x="156" y="254" width="14" height="12"/>
+            <rect x="426" y="222" width="14" height="12"/><rect x="474" y="246" width="14" height="12"/>
+            <rect x="706" y="226" width="14" height="12"/><rect x="754" y="250" width="14" height="12"/>
+            <rect x="976" y="216" width="14" height="12"/><rect x="1024" y="240" width="14" height="12"/>
+            <rect x="30" y="232" width="14" height="12"/><rect x="78" y="256" width="14" height="12"/><rect x="1100" y="246" width="14" height="12"/><rect x="1200" y="262" width="14" height="12"/>
+            <rect x="290" y="248" width="14" height="12"/><rect x="560" y="258" width="14" height="12"/><rect x="850" y="254" width="14" height="12"/>
+          </g>
+        </svg>
         <div class="txt">
-          <div class="lbl" style="color:var(--cyan)">MISSION // SAFE HOME FOR SOLDIERS</div>
-          <p class="pre" style="margin-top:10px">당신의 안전한 부동산을 위해</p>
-          <h1>당신의 <span class="k">안!부!</span>를<br>묻습니다</h1>
-          <div class="gloss"><span><b>안</b> = 안전한</span><span><b>부</b> = 부동산</span></div>
-          <p class="hero-sub">군인 맞춤 청약 · 집 구하기 · 계약 점검, 그리고 <b>AI 서류 해석</b>까지</p>
+          <span class="kicker"><i></i>군인을 위한 안전한 부동산</span>
+          <h1 aria-label="안부">안<span>!</span>부<span>!</span></h1>
+          <p class="slogan">당신의 <b>안</b>전한 <b>부</b>동산을 위해<br>안부를 묻습니다</p>
+          <p class="who">청약 · 전월세 · 계약 점검을 <b>AI와 함께</b></p>
+        </div>
+        <div class="st-mascot" aria-hidden="true">
+          <span class="bubble">이 집, 안녕한가요?</span>
+          <svg viewBox="0 0 236 260">
+            <g stroke="#0B1B33" stroke-linejoin="round" stroke-linecap="round">
+              <ellipse cx="92" cy="246" rx="24" ry="11" fill="#0B1B33"/><ellipse cx="150" cy="246" rx="24" ry="11" fill="#0B1B33"/>
+              <path d="M48 122 L120 62 L192 122 V224 a16 16 0 0 1 -16 16 H64 a16 16 0 0 1 -16 -16 Z" fill="#FFF4DC" stroke-width="7"/>
+              <path d="M30 128 L120 54 L210 128" fill="none" stroke-width="30"/>
+              <path d="M30 128 L120 54 L210 128" fill="none" stroke="#F2901D" stroke-width="17"/>
+              <path d="M66 74 Q68 14 120 12 Q172 14 174 74 Q120 92 66 74 Z" fill="#4E9160" stroke-width="7"/>
+              <path d="M60 76 Q120 98 180 76" fill="none" stroke-width="7"/>
+              <path d="M84 40 Q98 24 118 22" fill="none" stroke="#8FD0A0" stroke-width="6"/>
+              <path d="M190 178 Q222 150 186 96" fill="none" stroke-width="22"/>
+              <path d="M190 178 Q222 150 186 96" fill="none" stroke="#FFF4DC" stroke-width="10"/>
+              <path d="M40 158 l34 11 v26 c0 22 -14 37 -34 44 c-20 -7 -34 -22 -34 -44 v-26 Z" fill="#3FD0E0" stroke-width="7"/>
+              <path d="M25 198 l11 12 l20 -24" fill="none" stroke="#fff" stroke-width="9"/>
+            </g>
+            <ellipse cx="96" cy="160" rx="10" ry="13" fill="#0B1B33"/><ellipse cx="146" cy="160" rx="10" ry="13" fill="#0B1B33"/>
+            <circle cx="99" cy="155" r="4" fill="#fff"/><circle cx="149" cy="155" r="4" fill="#fff"/>
+            <ellipse cx="78" cy="182" rx="11" ry="7" fill="#FF9E8A" opacity=".85"/><ellipse cx="164" cy="182" rx="11" ry="7" fill="#FF9E8A" opacity=".85"/>
+            <path d="M104 184 Q121 204 138 184 Z" fill="#0B1B33"/>
+            <path d="M112 193 Q121 200 130 193" fill="none" stroke="#FF7E6B" stroke-width="5" stroke-linecap="round"/>
+          </svg>
         </div>
       </div>
       <div class="tasks">

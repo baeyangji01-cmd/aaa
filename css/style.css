@@ -580,3 +580,34 @@ section,.sec-head{scroll-margin-top:64px}
 .ai-fab b{font-family:var(--f-mono);font-size:11px;padding:1px 5px;background:#1a1205;color:var(--amber)}
 .ai-fab.hide{opacity:0;pointer-events:none;transform:translateY(8px)}
 .item .t{font-family:var(--f-body);font-size:15px;letter-spacing:0;padding:0;border:0;color:var(--ink)}
+
+/* ===== v7: 첫 화면 — 썸네일과 같은 노을 스카이라인 · 큰 제목 · 캐릭터 ===== */
+.stage{min-height:470px;justify-content:center;border-color:#2C5873;
+  background:linear-gradient(180deg,#0A1B3A 0%,#12426B 46%,#1F7A8C 72%,#F7A64A 98%,#FFC766 100%)}
+.st-stars{position:absolute;inset:0 0 auto;width:100%;height:60%}
+.st-sun{position:absolute;left:38%;bottom:-46%;width:78%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,214,130,.9) 0%,rgba(255,170,70,.5) 34%,rgba(255,170,70,0) 68%)}
+.st-sky{position:absolute;left:0;right:0;bottom:0;width:100%;height:36%}
+.stage .txt{position:relative;z-index:2;padding:30px 32px 96px;background:linear-gradient(90deg,rgba(8,20,42,.5),rgba(8,20,42,0) 80%)}
+.kicker{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.5);font-size:15px;font-weight:500;color:#fff}
+.kicker i{width:9px;height:9px;border-radius:50%;background:#6BFFB0;box-shadow:0 0 8px #6BFFB0}
+.hero h1{font-family:"Black Han Sans","IBM Plex Sans KR",sans-serif;font-weight:400;font-size:clamp(92px,13.5vw,176px);line-height:1;letter-spacing:-.02em;margin:10px 0 0 -4px;
+  color:#FFB52E;-webkit-text-stroke:.06em #0B1B33;paint-order:stroke fill;text-shadow:0 .04em 0 #0B1B33,0 .1em .14em rgba(0,0,0,.45)}
+.hero h1 span{color:#fff}
+.slogan{margin:14px 0 0;font-size:clamp(22px,2.9vw,34px);font-weight:700;line-height:1.35;letter-spacing:-.01em;color:#fff;text-shadow:0 2px 0 rgba(8,20,42,.75),0 4px 14px rgba(0,0,0,.5)}
+.slogan b{color:#FFB52E}
+.who{display:inline-block;margin:16px 0 0;padding:6px 14px;font-size:clamp(15px,1.7vw,19px);font-weight:500;color:#fff;background:#0B1B33;border-left:6px solid #FFB52E}
+.who b{color:var(--cyan);font-weight:700}
+.st-mascot{position:absolute;z-index:3;right:3%;bottom:10px;width:clamp(120px,22%,190px);filter:drop-shadow(0 10px 12px rgba(0,0,0,.4))}
+.st-mascot svg{display:block;width:100%;height:auto}
+.st-mascot .bubble{position:absolute;right:62%;bottom:78%;padding:7px 14px;border-radius:18px 18px 4px 18px;background:#fff;color:#0B1B33;font-size:17px;font-weight:700;border:3px solid #0B1B33;box-shadow:0 4px 0 #0B1B33;white-space:nowrap}
+@media (prefers-reduced-motion:no-preference){.st-mascot svg{animation:bob 3.2s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-6px)}}}
+@media (max-width:900px){.stage{min-height:420px}}
+@media (max-width:560px){
+  .stage{min-height:0}
+  .stage .txt{padding:22px 20px 120px}
+  .stage .txt>.kicker{display:inline-flex}
+  .st-mascot{right:4%;width:112px}
+  .st-mascot .bubble{font-size:14px;right:70%;bottom:66%}
+}
+.stage .who b{font-family:inherit;font-size:inherit;letter-spacing:0;padding:0}
+@media (max-width:560px){.stage .txt{padding-bottom:132px}.st-mascot .bubble{right:92%;bottom:34%;border-radius:18px 18px 4px 18px}}

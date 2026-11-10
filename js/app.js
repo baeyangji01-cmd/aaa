@@ -3,7 +3,7 @@
 
 /* ---------- radar hero ---------- */
 (function(){
-  const cv=document.getElementById('radar'),ctx=cv.getContext('2d');
+  const cv=document.getElementById('radar');if(!cv)return;const ctx=cv.getContext('2d');
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   let w,h,dpr,blips=[];
   function size(){dpr=Math.min(2,devicePixelRatio||1);w=cv.clientWidth;h=cv.clientHeight;cv.width=w*dpr;cv.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
