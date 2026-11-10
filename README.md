@@ -59,3 +59,9 @@ anbu-site/
 - 자격 진단은 단순화한 안내용 규칙입니다. 최종 자격은 입주자모집공고와 청약홈에서 확인해야 합니다.
 - 군부대 · 관사 위치는 군사보안상 표시하지 않습니다. 기준 위치는 동네 중심점만 씁니다.
 - 지도: Leaflet, © OpenStreetMap contributors © CARTO. 경계: southkorea/southkorea-maps.
+
+## AI 안부 (Claude API)
+
+- 등기부등본 해석 · 특약 점검 · AI 상담은 Vercel 서버 함수 `api/ai.js`가 Claude API를 불러서 동작해요.
+- Vercel 프로젝트 → Settings → Environment Variables에 `ANTHROPIC_API_KEY`를 등록하고 다시 배포하세요. 키는 코드나 저장소에 넣지 않아요.
+- 키가 없으면 화면에 `예시 모드`가 표시되고, 예시 서류의 분석 결과만 보여줘요.

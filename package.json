@@ -1,0 +1,9 @@
+{
+  "name": "anbu-site",
+  "private": true,
+  "type": "module",
+  "description": "안!부! — 빌드 없는 정적 사이트 + AI 서버 함수(api/ai.js)",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.7.0"
+  }
+}

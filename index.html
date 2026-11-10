@@ -20,6 +20,7 @@
       <a href="#support">집 구하기</a>
       <a href="#family">가족 · 교육</a>
       <a href="#check">계약 안전</a>
+      <a href="#ai" class="nav-ai">AI 분석</a>
     </nav>
     <div class="sys"><span class="on">SYS ONLINE</span><span class="clk" id="clock">KST --:--:--</span></div>
   </div>
@@ -36,7 +37,7 @@
           <p class="pre" style="margin-top:10px">당신의 안전한 부동산을 위해</p>
           <h1>당신의 <span class="k">안!부!</span>를<br>묻습니다</h1>
           <div class="gloss"><span><b>안</b> = 안전한</span><span><b>부</b> = 부동산</span></div>
-          <p class="hero-sub">군인 맞춤 청약 · 집 구하기 · 계약 점검을 한곳에서</p>
+          <p class="hero-sub">군인 맞춤 청약 · 집 구하기 · 계약 점검, 그리고 <b>AI 서류 해석</b>까지</p>
         </div>
       </div>
       <div class="tasks">
@@ -45,6 +46,7 @@
         <a class="task" href="#support"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><span><b>집 구하기</b><small>전세 지원 · 주택수당 예산 안 매물</small></span><i aria-hidden="true">→</i></a>
         <a class="task" href="#family"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14 20c0-2.5 1.5-4.5 3-4.5s4 1.5 4 4.5"/></svg></span><span><b>가족 · 교육</b><small>새 동네 커뮤니티 · 자녀 특별전형</small></span><i aria-hidden="true">→</i></a>
         <a class="task" href="#check"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><span><b>계약 안전 점검</b><small>체크리스트 · 깡통전세 계산</small></span><i aria-hidden="true">→</i></a>
+        <a class="task task-ai" href="#ai"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18.5 15l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg></span><span><b>AI 안부 <em>AI</em></b><small>등기부등본 · 특약을 AI가 읽고 설명</small></span><i aria-hidden="true">→</i></a>
       </div>
     </div>
   </div>
@@ -392,6 +394,93 @@
     </div>
   </section>
 
+  <!-- AI -->
+  <section id="ai">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="lbl">05 · AI 안부 <span class="ai-flag" id="ai-flag">확인 중</span></span>
+        <h2>어려운 서류, AI가 대신 읽어 드려요</h2>
+        <ol class="flow"><li>서류 붙여넣기 · 올리기</li><li>AI가 위험 신호 찾기</li><li>쉬운 말 설명 · 할 일 받기</li></ol>
+      </div>
+
+      <div class="pnl corner ai">
+        <div class="ai-tabs" role="tablist" aria-label="AI 기능">
+          <button type="button" role="tab" id="ai-t-registry" aria-controls="ai-p-registry" aria-selected="true"><b>등기부등본 해석</b><small>근저당 · 신탁 · 압류 찾기</small></button>
+          <button type="button" role="tab" id="ai-t-terms" aria-controls="ai-p-terms" aria-selected="false"><b>특약 점검</b><small>빠진 보호 조항 채우기</small></button>
+          <button type="button" role="tab" id="ai-t-chat" aria-controls="ai-p-chat" aria-selected="false"><b>AI 상담</b><small>내 조건으로 물어보기</small></button>
+        </div>
+
+        <!-- 등기부등본 -->
+        <div class="ai-pane" id="ai-p-registry" role="tabpanel" aria-labelledby="ai-t-registry">
+          <div class="ai-io">
+            <form class="form" id="ai-f-registry" autocomplete="off">
+              <label class="fld">등기부등본 내용 붙여넣기
+                <textarea id="ai-registry-text" rows="9" placeholder="인터넷등기소에서 열람한 등기부등본의 글자를 붙여넣으세요. (표제부 · 갑구 · 을구)"></textarea>
+              </label>
+              <label class="drop" id="ai-registry-drop">
+                <input type="file" id="ai-registry-file" accept="application/pdf,image/png,image/jpeg,image/webp" hidden>
+                <span><b>또는 파일 올리기</b> PDF · 사진 (3MB 이하)</span>
+                <span class="drop-name" id="ai-registry-name"></span>
+              </label>
+              <div class="ai-actions">
+                <button class="btn primary" type="submit">AI로 해석하기</button>
+                <button class="btn ghost" type="button" data-sample="registry">예시 불러오기</button>
+              </div>
+              <p class="hint">주민등록번호 뒷자리는 보내기 전에 자동으로 가려요. 올린 서류는 저장하지 않아요.</p>
+            </form>
+            <div class="ai-out" id="ai-o-registry" aria-live="polite"><p class="ai-empty">등기부등본을 넣고 <b>AI로 해석하기</b>를 누르면, 보증금을 위협하는 권리를 찾아 쉬운 말로 알려 드려요.</p></div>
+          </div>
+        </div>
+
+        <!-- 특약 -->
+        <div class="ai-pane" id="ai-p-terms" role="tabpanel" aria-labelledby="ai-t-terms" hidden>
+          <div class="ai-io">
+            <form class="form" id="ai-f-terms" autocomplete="off">
+              <label class="fld">계약서 특약사항 붙여넣기
+                <textarea id="ai-terms-text" rows="9" placeholder="계약서의 '특약사항' 부분을 붙여넣으세요."></textarea>
+              </label>
+              <label class="drop" id="ai-terms-drop">
+                <input type="file" id="ai-terms-file" accept="application/pdf,image/png,image/jpeg,image/webp" hidden>
+                <span><b>또는 계약서 올리기</b> PDF · 사진 (3MB 이하)</span>
+                <span class="drop-name" id="ai-terms-name"></span>
+              </label>
+              <div class="ai-actions">
+                <button class="btn primary" type="submit">AI로 점검하기</button>
+                <button class="btn ghost" type="button" data-sample="terms">예시 불러오기</button>
+              </div>
+              <p class="hint">도장 찍기 전에 점검하세요. 빠진 조항은 그대로 복사해 넣을 수 있는 문장으로 드려요.</p>
+            </form>
+            <div class="ai-out" id="ai-o-terms" aria-live="polite"><p class="ai-empty">특약을 넣고 <b>AI로 점검하기</b>를 누르면, 들어 있는 보호 조항 · 빠진 조항 · 불리한 조항으로 나눠 보여 드려요.</p></div>
+          </div>
+        </div>
+
+        <!-- 상담 -->
+        <div class="ai-pane" id="ai-p-chat" role="tabpanel" aria-labelledby="ai-t-chat" hidden>
+          <div class="chat">
+            <div class="chat-log" id="ai-chat-log" aria-live="polite">
+              <div class="bub ai"><p>안녕하세요, 안부 AI예요. 청약 자격, 전세 지원, 계약 절차처럼 궁금한 걸 물어보세요. 위에서 입력한 <b>내 조건</b>을 참고해서 답해 드려요.</p></div>
+            </div>
+            <div class="chips" id="ai-chat-chips">
+              <button type="button" class="chip">내 조건이면 뭐부터 해야 해?</button>
+              <button type="button" class="chip">관사에 살면 무주택 기간이 인정돼?</button>
+              <button type="button" class="chip">전입신고는 언제 해야 안전해?</button>
+              <button type="button" class="chip">깡통전세는 어떻게 피해?</button>
+            </div>
+            <form class="chat-in" id="ai-f-chat" autocomplete="off">
+              <input id="ai-chat-q" type="text" maxlength="500" placeholder="궁금한 점을 적어 주세요" aria-label="질문">
+              <button class="btn primary" type="submit">보내기</button>
+            </form>
+            <div class="chat-opt">
+              <label class="tog" style="font-size:13px"><input type="checkbox" id="ai-chat-ctx" checked> 내 조건 반영 (복무 · 무주택 · 가점 · 급지)</label>
+              <button type="button" class="reset" id="ai-chat-reset" style="margin:0">대화 지우기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notice"><b>AI</b><span>AI 분석은 참고용이에요. 계약 전에는 인터넷등기소 원본과 공식 기관 상담으로 꼭 다시 확인하세요. 부대 · 관사 위치는 적지 마세요.</span></div>
+    </div>
+  </section>
+
   <!-- FRAUD -->
   <section id="fraud">
     <div class="wrap">
@@ -441,9 +530,9 @@
         <div class="pnl who-c"><b>사회초년생</b><span>계약 경험 0회, 중개사 말에만 의존</span></div>
       </div>
       <div class="road">
-        <div class="pnl now"><div class="pnl-h"><b>NOW</b><span>해커톤 시제품</span></div><div class="pnl-b"><h3>청약 내비 · 체크리스트 · 계산기</h3><p>회원가입 없이 바로 써요. 분양 일정은 예시 데이터.</p></div></div>
-        <div class="pnl"><div class="pnl-h"><b>NEXT</b><span>계획</span></div><div class="pnl-b"><h3>AI 등기부등본 해석</h3><p>PDF를 올리면 위험 요소를 쉬운 말로 설명해요.</p></div></div>
-        <div class="pnl"><div class="pnl-h"><b>LATER</b><span>계획</span></div><div class="pnl-b"><h3>청약홈 실데이터 · 맞춤 알림</h3><p>내 조건에 맞는 공고가 뜨면 알려줘요.</p></div></div>
+        <div class="pnl now"><div class="pnl-h"><b>NOW</b><span>해커톤 시제품</span></div><div class="pnl-b"><h3>청약 내비 · 체크리스트 · AI 안부</h3><p>회원가입 없이 바로 써요. AI가 등기부등본과 특약을 읽고, 내 조건으로 상담해요.</p></div></div>
+        <div class="pnl"><div class="pnl-h"><b>NEXT</b><span>계획</span></div><div class="pnl-b"><h3>청약홈 실데이터 · 실거래가</h3><p>예시 데이터를 실제 분양 일정과 전월세 시세로 바꿔요.</p></div></div>
+        <div class="pnl"><div class="pnl-h"><b>LATER</b><span>계획</span></div><div class="pnl-b"><h3>맞춤 알림 · AI 계약 동행</h3><p>내 조건에 맞는 공고를 알려주고, 계약 단계마다 AI가 할 일을 챙겨요.</p></div></div>
       </div>
     </div>
   </section>
@@ -465,6 +554,7 @@
 <script src="js/mil.js"></script>
 <script src="js/support.js"></script>
 <script src="js/family.js"></script>
+<script src="js/ai.js"></script>
 </body>
 </html>
 
