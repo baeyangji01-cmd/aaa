@@ -393,3 +393,96 @@ footer .mono{font-size:11px;letter-spacing:.1em}
 .tips{border-top:1px solid var(--line-2);padding-top:14px}
 .tips .watch li{flex-direction:column;align-items:flex-start;gap:2px}
 .tips .btn{justify-content:center}
+
+/* ===== v5: 사용자 중심 정리 — 할 일 카드 · 단계 표시 · 접기 ===== */
+body{font-size:16px;background-image:none}
+body::after{background:radial-gradient(ellipse at 50% -10%,rgba(63,208,224,.07),transparent 60%)}
+.lead{font-size:16px}
+section{padding-block:56px}
+.sec-head .lbl{font-family:var(--f-body);font-size:14px;letter-spacing:.02em;text-transform:none;font-weight:500}
+.pnl-h{font-family:var(--f-body);font-size:13px;letter-spacing:.02em;text-transform:none}
+.pnl-h b{font-weight:600}
+.fld{font-family:var(--f-body);font-size:13px;letter-spacing:0}
+.fld input,.fld select{font-size:15px;padding:10px 12px}
+.btn{font-family:var(--f-body);font-size:15px;letter-spacing:0;font-weight:500}
+.hint{font-size:13px;color:var(--muted)}
+.notice{font-size:14px;align-items:baseline}
+.notice b{font-family:var(--f-body);font-size:12px;letter-spacing:0;padding:1px 8px;border:1px solid var(--amber)}
+.top nav a{font-family:var(--f-body);font-size:14px;letter-spacing:0;padding:8px 12px}
+@media (max-width:980px){.top nav{display:flex;margin-left:0}.sys{display:none}}
+@media (max-width:560px){.top .wrap{gap:10px}.logo{font-size:12px;letter-spacing:.1em}.top nav a{padding:8px 7px;font-size:13px}}
+
+/* hero */
+.stage{min-height:400px}
+.hero-sub{margin:14px 0 0;color:var(--muted);font-size:17px}
+.tasks{display:grid;gap:10px;align-content:start}
+.tasks-q{margin:0 0 4px;font-size:20px;font-weight:600}
+.task{display:grid;grid-template-columns:48px 1fr auto;align-items:center;gap:14px;padding:16px 18px;background:var(--panel);border:1px solid var(--line-2);color:var(--ink);text-decoration:none;transition:border-color .15s,background .15s,transform .15s}
+.task:hover,.task:focus-visible{border-color:var(--cyan);background:var(--panel-2)}
+@media (prefers-reduced-motion:no-preference){.task:hover{transform:translateX(3px)}}
+.task .ico{width:48px;height:48px;display:grid;place-items:center;background:var(--cyan-soft);border:1px solid rgba(63,208,224,.35)}
+.task .ico svg{width:24px;height:24px;fill:none;stroke:var(--cyan);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.task b{display:block;font-size:18px;font-weight:600}
+.task small{display:block;font-size:14px;color:var(--muted);margin-top:2px}
+.task i{font-style:normal;color:var(--cyan);font-size:20px}
+
+/* 단계 흐름 */
+.flow{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;counter-reset:f}
+.flow li{counter-increment:f;display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink);padding:6px 12px 6px 6px;background:var(--panel);border:1px solid var(--line-2)}
+.flow li::before{content:counter(f);display:grid;place-items:center;width:22px;height:22px;background:var(--amber);color:#1a1205;font-weight:700;font-size:12px;font-family:var(--f-mono)}
+.flow li+li{position:relative}
+.sub-h{font-size:16px;font-weight:600;margin-bottom:10px}
+.sub-h small{font-weight:400;color:var(--muted);font-size:13px;margin-left:6px}
+
+/* 접기 */
+details.more>summary{cursor:pointer;list-style:none;font-size:14px;color:var(--cyan);padding:8px 0;display:flex;align-items:center;gap:6px}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary::before{content:"▸";transition:transform .15s}
+details.more[open]>summary::before{transform:rotate(90deg)}
+.facts-more{margin-top:16px;border-top:1px dashed var(--line-2);padding-top:6px}
+.facts-more .facts{margin-top:8px}
+
+/* 경로 카드 */
+.path h3{font-size:19px}
+.path p{font-size:15px}
+.path .q{display:grid;place-items:center;width:28px;height:28px;border:1px solid var(--cyan);font-size:13px}
+
+/* 위협 카드: 눌러서 펼치기 */
+.fcard>summary{list-style:none;cursor:pointer;padding:16px 18px;display:grid;gap:4px}
+.fcard>summary::-webkit-details-marker{display:none}
+.fcard>summary::after{content:"막는 법 보기 ▸";font-size:13px;color:var(--cyan);margin-top:4px}
+.fcard[open]>summary::after{content:"접기 ▾"}
+.fcard .lv{font-size:12px;font-weight:600}
+.fcard>.pnl-b{border-top:1px solid var(--line-2)}
+.fcard:hover{border-color:var(--cyan)}
+
+/* 체크리스트 설명은 작게 */
+.item .t{font-size:15px}
+.item .d{font-size:13px}
+.step .pnl-h::before{content:counter(s) "단계 · ";font-family:var(--f-body)}
+.step .pnl-h{justify-content:flex-start;gap:0}
+
+/* 왜 안부 */
+.why-row{display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:12px;margin-bottom:16px}
+@media (max-width:900px){.why-row{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.why-row{grid-template-columns:1fr}}
+.why-row .stat{display:flex;gap:14px;align-items:center;padding:16px}
+.why-row .stat strong{font-family:var(--f-mono);font-size:40px;color:var(--amber);font-weight:500;line-height:1}
+.why-row .stat span{font-size:14px;color:var(--muted)}
+.why-row .stat small{font-size:11px;color:var(--dim)}
+.who-c{padding:16px;display:grid;gap:4px;align-content:center}
+.who-c b{color:var(--amber);font-size:15px}
+.who-c span{font-size:14px;color:var(--muted)}
+.logo{white-space:nowrap;flex-shrink:0}
+.logo em{font-style:normal}
+@media (max-width:560px){.logo .en{display:none}.top nav{scrollbar-width:none}.top nav::-webkit-scrollbar{display:none}.stage{min-height:340px}.stage .txt>.lbl{display:none}}
+section,.sec-head{scroll-margin-top:64px}
+.seg button,.tabs button{font-family:var(--f-body);letter-spacing:0;font-size:13px}
+@media (max-width:860px){
+  .paths{gap:8px}
+  .path{grid-template-columns:28px 1fr;column-gap:12px;row-gap:2px;padding:12px 14px}
+  .path .q{grid-row:span 3;align-self:start}
+  .path h3{font-size:17px}
+  .path p{font-size:14px}
+}
+.fcard .guard b{font-family:var(--f-body);letter-spacing:0;font-size:13px}

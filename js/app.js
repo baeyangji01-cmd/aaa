@@ -102,7 +102,7 @@ const FRAUD=[
   {n:"바지 집주인",lv:"MED",h:"계약 직후 집을 재산이 없는 사람에게 넘겨서, 만기에 보증금을 돌려줄 사람이 사라져요.",g:"특약에 '임대인 변경 시 사전 고지, 동의 없으면 해지 가능'을 넣고 보증보험에 가입하세요."},
   {n:"가짜 집주인 · 대리인",lv:"HIGH",h:"위조 신분증이나 가짜 위임장으로 집주인 행세를 하며 계약금을 받아 사라져요.",g:"신분증 진위 확인, 인감증명서 확인, 집주인과 직접 영상통화를 하세요."},
   {n:"잔금일 대출 끼워넣기",lv:"MED",h:"잔금일 당일에 집주인이 몰래 대출을 받아, 내 순위가 은행보다 밀려나요.",g:"전입신고 효력은 다음날 0시에 생겨요. '잔금일 다음날까지 근저당 금지' 특약을 꼭 넣으세요."}];
-document.getElementById('fraudList').innerHTML=FRAUD.map((f,i)=>`<article class="pnl fcard"><div class="pnl-h"><b>THREAT-0${i+1}</b><span style="color:${f.lv==='HIGH'?'var(--bad)':'var(--warn)'}">${f.lv}</span></div><div class="pnl-b"><h3>${f.n}</h3><p class="how">${f.h}</p><p class="guard"><b>COUNTER</b> · ${f.g}</p></div></article>`).join('');
+document.getElementById('fraudList').innerHTML=FRAUD.map((f,i)=>`<details class="pnl fcard"><summary><span class="lv" style="color:${f.lv==='HIGH'?'var(--bad)':'var(--warn)'}">${f.lv==='HIGH'?'위험 높음':'주의'}</span><h3>${f.n}</h3></summary><div class="pnl-b"><p class="how">${f.h}</p><p class="guard"><b>막는 법</b> · ${f.g}</p></div></details>`).join('');
 
 const STEPS=[
   {n:"집 알아보기",w:"계약 2~4주 전",l:["지역 탐색으로 시세 · 지역 파악하기","등기부등본 · 건축물대장 미리 열람하기","공인중개사 등록 여부 조회하기","보증보험 가입 가능 여부 물어보기"]},
