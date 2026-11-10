@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>안부 — 안전한 부동산</title>
-<meta name="description" content="당신의 안전한 부동산을 위해 당신의 안!부!를 묻습니다. 군인 맞춤 청약 내비, 지역 탐색, 전월세 안전 체크리스트.">
+<meta name="description" content="안!부!는 군인을 위한 안전한 부동산 도우미예요. 복무 조건으로 지원 가능한 청약과 예산 안의 집을 찾고, AI가 등기부등본과 계약서 특약을 읽어 위험 신호를 쉬운 말로 알려 줘요. 전월세 안전 체크리스트와 깡통전세 계산기도 함께 제공해요.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="안!부! — 군인을 위한 안전한 부동산">
 <meta property="og:description" content="내 복무 조건으로 찾는 청약과 집, AI가 읽어 주는 등기부등본 · 특약.">
@@ -98,6 +98,16 @@
         <a class="task" href="#check"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><span><b>계약 안전 점검</b><small>체크리스트 · 깡통전세 계산</small></span><i aria-hidden="true">→</i></a>
         <a class="task task-ai" href="#ai"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18.5 15l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg></span><span><b>AI 안부 <em>AI</em></b><small>등기부등본 · 특약을 AI가 읽고 설명</small></span><i aria-hidden="true">→</i></a>
       </div>
+    </div>
+    <div class="quick pnl corner" id="quick">
+      <div class="quick-h"><b>30초 체험</b><span>나와 비슷한 상황을 고르면 <em>내 안부 리포트</em>를 바로 만들어 드려요</span></div>
+      <div class="personas" id="personas">
+        <button type="button" data-p="junior" aria-pressed="false"><b>초급간부</b><small>임관 3년 · 미혼</small></button>
+        <button type="button" data-p="mid" aria-pressed="false"><b>장기복무 간부</b><small>12년 · 기혼 · 자녀 1</small></button>
+        <button type="button" data-p="senior" aria-pressed="false"><b>고참 간부</b><small>26년 · 자녀 2</small></button>
+        <button type="button" data-p="vet" aria-pressed="false"><b>전역 간부</b><small>11년 복무 후 전역</small></button>
+      </div>
+      <div class="report" id="report" hidden aria-live="polite"></div>
     </div>
   </div>
 
@@ -255,10 +265,10 @@
                 <label class="fld">주택수당 (월, 만 원)
                   <div class="radius"><input type="range" id="r-allow" min="16" max="20" step="1" value="16" aria-label="주택수당"><output id="r-allow-out">16만</output></div>
                 </label>
-                <label class="fld">내가 더 낼 수 있는 월세 (만 원)<input id="r-extra" type="number" min="0" max="200" value="25" inputmode="numeric"></label>
-                <label class="fld">보증금 한도 (만 원)<input id="r-deposit" type="number" min="0" step="100" value="1000" inputmode="numeric"></label>
+                <label class="fld">내가 더 낼 수 있는 월세 (만 원)<input id="r-extra" type="number" min="0" max="200" value="55" inputmode="numeric"></label>
+                <label class="fld">보증금 한도 (만 원)<input id="r-deposit" type="number" min="0" step="100" value="2000" inputmode="numeric"></label>
                 <label class="tog"><input type="checkbox" id="r-fee" checked> 관리비까지 포함해서 계산</label>
-                <div class="capbox"><span>한 달 주거 예산</span><strong id="budget-val">41만</strong></div>
+                <div class="capbox"><span>한 달 주거 예산</span><strong id="budget-val">71만</strong></div>
               </div>
 
               <div>
@@ -420,6 +430,7 @@
         <aside class="pnl corner reply" aria-live="polite">
           <div class="pnl-h"><b>안부 상태</b><span>RE: 안부 묻습니다</span></div>
           <div class="pnl-b">
+            <div class="mood" id="mood"></div>
             <div class="status" id="status">답장 대기 중</div>
             <p class="msg" id="msg">체크리스트를 하나씩 확인해 보세요.</p>
             <div class="meter"><i id="bar"></i></div>
@@ -598,13 +609,16 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="data/korea-topo.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script src="js/mascot.js"></script>
 <script src="js/config.js"></script>
 <script src="js/sample-sites.js"></script>
 <script src="js/app.js"></script>
 <script src="js/mil.js"></script>
 <script src="js/support.js"></script>
 <script src="js/family.js"></script>
+<script src="js/ai-local.js"></script>
 <script src="js/ai.js"></script>
+<script src="js/quick.js"></script>
 </body>
 </html>
 

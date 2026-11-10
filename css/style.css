@@ -611,3 +611,43 @@ section,.sec-head{scroll-margin-top:64px}
 }
 .stage .who b{font-family:inherit;font-size:inherit;letter-spacing:0;padding:0}
 @media (max-width:560px){.stage .txt{padding-bottom:132px}.st-mascot .bubble{right:92%;bottom:34%;border-radius:18px 18px 4px 18px}}
+
+/* ===== v8: 30초 체험 · 내 안부 리포트 · 캐릭터 표정 ===== */
+.quick{margin-top:16px;padding:18px 20px;border-color:rgba(242,169,59,.5);background:linear-gradient(180deg,rgba(242,169,59,.08),var(--panel) 70%)}
+.quick-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.quick-h b{font-size:18px;font-weight:700;color:var(--amber)}
+.quick-h span{font-size:15px;color:var(--muted)}
+.quick-h em{font-style:normal;color:var(--ink);font-weight:500}
+.personas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:760px){.personas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.personas button{font:inherit;text-align:left;display:grid;gap:2px;padding:12px 14px;background:var(--bg);color:var(--ink);border:1px solid var(--line-2);cursor:pointer;transition:border-color .15s,background .15s}
+.personas button:hover{border-color:var(--amber)}
+.personas button[aria-pressed="true"]{border-color:var(--amber);background:var(--warn-soft);box-shadow:inset 0 -3px 0 var(--amber)}
+.personas b{font-size:16px;font-weight:600}
+.personas small{font-size:13px;color:var(--muted)}
+.report{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line-2);display:grid;gap:12px}
+@media (prefers-reduced-motion:no-preference){.report:not([hidden]){animation:rise .35s ease-out}@keyframes rise{from{opacity:0;transform:translateY(8px)}}}
+.rep-head{display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:center}
+.rep-head b{font-size:18px;font-weight:700}
+.rep-head p{margin:2px 0 0;font-size:15px;color:var(--muted)}
+.face{display:block;width:64px;height:64px;flex:none}
+.rep-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:760px){.rep-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tile{display:grid;gap:2px;padding:12px 14px;background:var(--bg);border:1px solid var(--line-2);text-decoration:none;color:var(--ink)}
+.tile:hover{border-color:var(--cyan)}
+.tile strong{font-family:var(--f-mono);font-size:34px;font-weight:500;line-height:1.1;color:var(--amber);font-variant-numeric:tabular-nums}
+.tile strong small{font-family:var(--f-body);font-size:15px;color:var(--muted);margin-left:3px}
+.tile span{font-size:13px;color:var(--muted)}
+.tile em{font-style:normal;font-size:10px;padding:0 5px;margin-left:4px;border:1px solid var(--amber);color:var(--amber);vertical-align:1px}
+.rep-chips{display:flex;flex-wrap:wrap;gap:6px}
+.rep-chips .t{font-family:var(--f-body);font-size:13px;padding:3px 10px;letter-spacing:0}
+.rep-next{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rep-next .hint{flex:1 1 240px}
+.mood{display:flex;justify-content:center;margin-bottom:6px}
+.mood .face{width:84px;height:84px}
+@media (prefers-reduced-motion:no-preference){.face[data-mood="bad"]{animation:shake .5s ease-in-out 1}.face[data-mood="ok"]{animation:hop .5s ease-out 1}
+  @keyframes shake{25%{transform:translateX(-3px) rotate(-3deg)}75%{transform:translateX(3px) rotate(3deg)}}@keyframes hop{50%{transform:translateY(-5px)}}}
+.ai-grade{grid-template-columns:auto auto 1fr}
+.ai-grade .face{width:54px;height:54px}
+@media (max-width:560px){.ai-grade{grid-template-columns:auto 1fr}.ai-grade strong{grid-column:1/-1}}
+.rep-chips .t{white-space:normal;line-height:1.4}

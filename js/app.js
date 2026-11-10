@@ -74,7 +74,8 @@ function update(){let sc=0;const miss=[],done=[];
   else if(!miss.length&&pct>=85){st='잘 지내요';msg='필수 항목을 모두 확인했어요. 이 집은 안녕한 편이에요. 잔금일까지 긴장을 놓지 마세요.';col='var(--ok)'}
   else if(miss.length<=1&&pct>=55){st='조금 걱정돼요';msg='대부분 확인했지만 빠진 부분이 있어요. 계약 전에 꼭 채워 주세요.';col='var(--warn)'}
   else{st='안부가 불안해요';msg='확인하지 않은 위험 신호가 많아요. 아직 계약금을 보내지 마세요.';col='var(--bad)'}
-  const s=document.getElementById('status');s.textContent=st;s.style.color=col;document.getElementById('msg').textContent=msg;
+  const s=document.getElementById('status');s.textContent=st;s.style.color=col;
+  const md=document.getElementById('mood');if(md&&window.anbuFace)md.innerHTML=anbuFace({'var(--ok)':'ok','var(--warn)':'warn','var(--bad)':'bad'}[col]||'idle');document.getElementById('msg').textContent=msg;
   const bar=document.getElementById('bar');bar.style.width=pct+'%';bar.style.background=col==='var(--muted)'?'var(--cyan)':col;
   document.getElementById('score').textContent=pct+' / 100';
   const m=document.getElementById('missing');

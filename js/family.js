@@ -57,7 +57,7 @@ async function loadTips(R){tipRegion=R;const el=document.getElementById('tips-li
   try{const r=await fetch(`${CFG.supabaseUrl}/rest/v1/cafe_tips?select=name,url,note&region=eq.${enc(R)}&order=created_at.desc&limit=20`,{headers:sbH});
     if(!r.ok)throw new Error(r.status);const rows=await r.json();if(R!==tipRegion)return;
     el.innerHTML=rows.length?rows.map(x=>`<li><a class="go" href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${esc(x.name)} ↗</a>${x.note?`<small style="color:var(--muted);font-size:12px">${esc(x.note)}</small>`:''}</li>`).join(''):'<li class="empty" style="background:none;border:0;padding:0">아직 추천이 없어요. 첫 번째로 알려주세요.</li>'}
-  catch(e){el.innerHTML='<li class="empty" style="background:none;border:0;padding:0">추천 목록을 불러오지 못했어요.</li>'}}
+  catch(e){const box=document.getElementById('tips');if(box)box.hidden=true}}   // 저장소가 준비되지 않았으면 영역을 숨겨요
 document.getElementById('tips-form').addEventListener('submit',async e=>{e.preventDefault();const msg=document.getElementById('t-msg');
   const name=document.getElementById('t-name').value.trim(),url=document.getElementById('t-url').value.trim(),note=document.getElementById('t-note').value.trim();
   if(!/^https:\/\/(m\.)?cafe\.naver\.com\//.test(url)){msg.textContent='네이버 카페 주소(https://cafe.naver.com/...)만 등록할 수 있어요.';return}

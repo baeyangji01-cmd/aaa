@@ -20,7 +20,7 @@
 | Supabase 기능 코드 (추천 카페) | ✅ 코드 완료 · ⬜ 실제 프로젝트 연결 안 됨 |
 | GitHub 저장소 | ⬜ 미생성 |
 | Vercel 배포 | ⬜ 미배포 |
-| AI 안부 (등기부 해석 · 특약 점검 · 상담) | ✅ 코드 완료 · Vercel에 `ANTHROPIC_API_KEY` 등록 필요 (없으면 예시 모드) |
+| AI 안부 (등기부 해석 · 특약 점검 · 상담) | ✅ 코드 완료 · Vercel에 `ANTHROPIC_API_KEY` 등록 필요 (없으면 규칙 기반 기본 분석) |
 | 청약홈 실데이터 API | ⬜ 미연결 (예시 데이터로 동작) |
 
 시연용 미리보기(Claude 아티팩트): https://claude.ai/artifact/3sFx91nhaY41wxXBcatVLM (지도 타일 없음, Supabase 미동작)
@@ -48,7 +48,10 @@ anbu-site/
 ├─ js/support.js         군 주거 지원 (급지 전세 한도, 주택수당 월세 예산, 예시 매물 생성, 반전세 계산)
 ├─ js/family.js          가족 · 교육 (맘카페 검색 연결, 추천 카페[Supabase], 군인 자녀 특별전형)
 ├─ data/korea-topo.js    시군구 경계 TopoJSON (통계청 2013, southkorea-maps) → window.KOREA_TOPO
-├─ js/ai.js              AI 안부 화면 (탭 · 스트림 수신 · 결과 렌더 · 예시 모드)
+├─ js/mascot.js          캐릭터 얼굴 SVG (기분: ok · warn · bad · idle) → window.anbuFace
+├─ js/quick.js           30초 체험: 예시 인물 4명 → 조건 자동 입력 → 내 안부 리포트
+├─ js/ai-local.js        기본 분석(규칙 기반): 키가 없을 때 등기부 · 특약 · 상담 대체 → window.ANBU_LOCAL
+├─ js/ai.js              AI 안부 화면 (탭 · 스트림 수신 · 결과 렌더 · 기본 분석 전환)
 ├─ api/ai.js             Vercel 서버 함수: Claude API 호출 (claude-opus-5-5, 구조화 출력, 스트리밍)
 ├─ package.json          서버 함수용 의존성(@anthropic-ai/sdk) · vercel.json 함수 시간 제한
 ├─ supabase/schema.sql   cafe_tips 테이블 + RLS
@@ -78,7 +81,7 @@ anbu-site/
 5. **#ai AI 안부**: 등기부등본 해석(글 · PDF · 사진 → 위험 등급 · 발견 사항 · 할 일, 근저당 합계를 깡통전세 계산기로 전달) / 특약 점검(있는 · 빠진 · 불리한 조항, 추천 문구 복사) / AI 상담(프로필 · 가점 · 급지 설정값을 문맥으로 전달, 스트리밍)
    - `POST /api/ai` `{mode:'registry'|'terms'|'chat', text, file, messages, context}` → 줄 단위 JSON 스트림. `GET /api/ai` → `{ready}`
    - 주민번호 뒷자리는 화면 · 서버 양쪽에서 가림. 같은 출처만 허용, IP당 10분 20회 제한. 서류는 저장하지 않음
-   - 키가 없으면 `예시 모드`로 예시 서류의 결과를 `예시` 표시와 함께 보여줌
+   - 키가 없으면 `기본 분석 모드`: 붙여넣은 글을 키워드 규칙으로 분석해 `기본 분석` 표시와 함께 보여줌 (말소 항목 제외, 근저당 합계 계산). 파일 분석은 AI 필요
 6. 왜 안부인가 → 안부 체크리스트(14항목) + 깡통전세 계산기 → 전세사기 위협 유형 6 → 계약 단계 6 → 지원 기관 → 로드맵
 
 localStorage 키: `anbu-profile`, `anbu-checks`, `anbu-support`, `anbu-comm`, `anbu-edu`
